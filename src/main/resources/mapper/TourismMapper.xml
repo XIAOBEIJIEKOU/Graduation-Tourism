@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.tourism.dao.TourismDao" >
+    <resultMap id="BaseResultMap" type="com.example.tourism.model.TourismInfo" >
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+        <result column="imgName" property="imgName" jdbcType="VARCHAR" />
+        <result column="currentNum" property="currentNum" jdbcType="INTEGER" />
+        <result column="maxinumFlow" property="maxinumFlow" jdbcType="INTEGER" />
+        <result column="costTime" property="costTime" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        name, introduction, imgName ,currentNum, maxinumFlow,costTime
+    </sql>
+    <select id="selectInfoByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from tourism_info
+        where name = #{name,jdbcType=VARCHAR}
+    </select>
+</mapper>
